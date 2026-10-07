@@ -1,0 +1,37 @@
+version: 2
+
+sources:
+  - name: staging
+    description: Validated CBS observations loaded by the Python pipeline.
+    schema: staging
+    tables:
+      - name: unemployment_monthly
+        description: Monthly seasonally adjusted national unemployment measures.
+        columns:
+          - name: period
+            data_tests: [unique, not_null]
+          - name: unemployed_thousands
+            data_tests: [not_null]
+          - name: unemployment_rate_pct
+            data_tests: [not_null]
+      - name: vacancies_quarterly
+        description: Quarterly national seasonally adjusted vacancy stock.
+        columns:
+          - name: quarter_end
+            data_tests: [unique, not_null]
+          - name: unfilled_vacancies_thousands
+            data_tests: [not_null]
+      - name: wages_monthly
+        description: Monthly hourly CAO wages including special payments.
+        columns:
+          - name: period
+            data_tests: [unique, not_null]
+          - name: hourly_cao_wage_yoy_pct
+            description: Published year-on-year wage change; null in 2020.
+      - name: cpi_monthly
+        description: Monthly national all-items CPI and annual inflation.
+        columns:
+          - name: period
+            data_tests: [unique, not_null]
+          - name: cpi_inflation_yoy_pct
+            data_tests: [not_null]

@@ -1,0 +1,52 @@
+# Python and local tools
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+
+# dbt outputs and local user identity
+target/
+dbt_packages/
+logs/
+.user.yml
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.vscode/
+.idea/
+
+# Rebuildable data (retain directory placeholders)
+data/raw/**
+data/processed/**
+data/warehouse/**
+data/dashboard/**
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/warehouse/.gitkeep
+!data/dashboard/.gitkeep
+*.duckdb
+*.duckdb.wal
+
+# Keep the finished PBIX; exclude local recovery/cache artifacts
+*.pbix.tmp
+*.pbit.tmp
+**/.pbi/
+**/localSettings.json
+**/cache.abf
+~$*
+tmp/
+temp/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini

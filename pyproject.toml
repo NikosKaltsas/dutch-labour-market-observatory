@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dutch-labour-observatory"
+version = "0.1.0"
+description = "Reproducible ingestion and analysis for a Dutch labour-market portfolio project"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<10",
+  "ruff>=0.12,<1",
+]
+pipeline = [
+  "duckdb>=1.5.5,<1.6",
+]
+analytics = [
+  "dbt-core>=1.12,<1.13",
+  "dbt-duckdb>=1.11,<1.12",
+  "mashumaro[msgpack]>=3.17,<3.18",
+]
+
+[project.scripts]
+labour-observatory = "dutch_labour_observatory.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

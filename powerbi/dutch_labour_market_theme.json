@@ -1,0 +1,85 @@
+{
+  "name": "Dutch Labour-Market Observatory",
+  "dataColors": [
+    "#17324D",
+    "#147D78",
+    "#E07A2D",
+    "#2E7D32",
+    "#B33A3A",
+    "#F2B134",
+    "#6B7280",
+    "#9CA3AF"
+  ],
+  "background": "#F7F8FA",
+  "foreground": "#17324D",
+  "tableAccent": "#147D78",
+  "good": "#2E7D32",
+  "neutral": "#F2B134",
+  "bad": "#B33A3A",
+  "maximum": "#17324D",
+  "center": "#F2B134",
+  "minimum": "#B33A3A",
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": { "solid": { "color": "#F7F8FA" } },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": { "solid": { "color": "#F7F8FA" } }
+          }
+        ]
+      }
+    },
+    "*": {
+      "*": {
+        "title": [
+          {
+            "fontFamily": "Segoe UI Semibold",
+            "fontSize": 12,
+            "fontColor": { "solid": { "color": "#17324D" } },
+            "alignment": "left"
+          }
+        ],
+        "background": [
+          {
+            "color": { "solid": { "color": "#FFFFFF" } },
+            "transparency": 0
+          }
+        ],
+        "border": [
+          {
+            "show": true,
+            "color": { "solid": { "color": "#E5E7EB" } }
+          }
+        ]
+      }
+    }
+  },
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 12,
+      "color": "#17324D"
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 11,
+      "color": "#17324D"
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "fontSize": 10,
+      "color": "#17324D"
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "fontSize": 28,
+      "color": "#17324D"
+    }
+  }
+}

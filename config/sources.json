@@ -1,0 +1,177 @@
+{
+  "catalogue_checked_on": "2026-09-09",
+  "sources": [
+    {
+      "name": "monthly_unemployment",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "80590ENG",
+      "table_title": "Monthly labour participation and unemployment",
+      "status": "active",
+      "last_modified_when_checked": "2026-08-20T06:30:00+02:00",
+      "available_period": "2003 January - 2026 July",
+      "frequency": "monthly",
+      "statline_url": "https://www.cbs.nl/en-gb/figures/detail/80590ENG",
+      "odata_base_url": "https://opendata.cbs.nl/ODataApi/OData/80590ENG",
+      "raw_extraction_scope": {
+        "period_type": "monthly",
+        "coverage": "all available periods"
+      },
+      "mvp_scope": {
+        "start_period": "2015MM01",
+        "period_key_pattern": "YYYYMMmm",
+        "dimensions": {
+          "Sex": {
+            "key": "T001038",
+            "label": "Total sex"
+          },
+          "Age": {
+            "key": "52052   ",
+            "label": "15 to 74 years"
+          }
+        },
+        "measures": {
+          "SeasonallyAdjusted_6": {
+            "label": "Unemployed labour force - seasonally adjusted",
+            "unit": "x 1,000"
+          },
+          "SeasonallyAdjusted_8": {
+            "label": "Unemployment rate - seasonally adjusted",
+            "unit": "%"
+          }
+        }
+      },
+      "notes": [
+        "The population excludes institutionalized people.",
+        "An unemployed person has no paid work, recently looked for work, and is directly available for work.",
+        "Use monthly period keys only; the same table also contains quarterly and annual observations.",
+        "The Age key is fixed-width and contains three trailing spaces; preserve them in API filters.",
+        "CBS did not apply a greater-than-or-equal range comparison to the coded Periods dimension; the raw layer therefore keeps all monthly history and staging applies the 2015 cutoff.",
+        "Retain the CBS-published rate instead of recalculating it from rounded counts."
+      ]
+    },
+    {
+      "name": "quarterly_unfilled_vacancies",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "84545ENG",
+      "table_title": "Vacancies; flowfigures, seasonally adjusted",
+      "status": "active",
+      "last_modified_when_checked": "2026-07-30T06:30:00+02:00",
+      "available_period": "1997 first quarter - 2026 second quarter",
+      "frequency": "quarterly",
+      "statline_url": "https://www.cbs.nl/en-gb/figures/detail/84545ENG",
+      "odata_base_url": "https://opendata.cbs.nl/ODataApi/OData/84545ENG",
+      "period_status_resource": "Periods",
+      "mvp_scope": {
+        "start_period": "2015KW01",
+        "period_key_pattern": "YYYYKWqq",
+        "measures": {
+          "VacanciesSeasonallyAdjustedUnfilled_1": {
+            "label": "Vacancies seasonally adjusted, unfilled",
+            "unit": "x 1,000"
+          }
+        }
+      },
+      "notes": [
+        "The measure is the stock of unfilled vacancies at the end of each quarter.",
+        "Use this national total before adding an economic-activity breakdown.",
+        "The 2026 observations were provisional when checked.",
+        "Observation status is stored in the Periods dimension metadata and must be retained during staging.",
+        "Do not combine quarterly vacancies directly with monthly unemployment without an explicit alignment rule."
+      ]
+    },
+    {
+      "name": "monthly_negotiated_wages",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "85663ENG",
+      "table_title": "Cao wages, contractual wage costs and working hours; index (2020=100)",
+      "status": "active",
+      "last_modified_when_checked": "2026-09-03T02:00:00+02:00",
+      "available_period": "Monthly figures from 2020; longer annual history",
+      "frequency": "monthly",
+      "statline_url": "https://www.cbs.nl/en-gb/figures/detail/85663ENG",
+      "odata_base_url": "https://opendata.cbs.nl/ODataApi/OData/85663ENG",
+      "period_status_resource": "Periods",
+      "mvp_scope": {
+        "start_period": "2020MM01",
+        "period_key_pattern": "YYYYMMmm",
+        "dimensions": {
+          "CaoSector": {
+            "key": "T001020",
+            "label": "Total collective labour agreement sector"
+          },
+          "SectorBranchesSIC2008": {
+            "key": "T001081",
+            "label": "A-U All economic activities"
+          },
+          "Version": {
+            "key": "A045600   ",
+            "label": "Current figures"
+          }
+        },
+        "measures": {
+          "HourlyCaoWagesInclSpecialPayments_4": {
+            "label": "Hourly cao wages including special payments",
+            "unit": "2020=100"
+          },
+          "HourlyCaoWagesInclSpecialPayments_11": {
+            "label": "Year-on-year change in hourly cao wages including special payments",
+            "unit": "%"
+          }
+        }
+      },
+      "notes": [
+        "Use current figures rather than first-published figures for the MVP.",
+        "The Version key is fixed-width and contains three trailing spaces.",
+        "Monthly observations in this 2020-base table begin in 2020, so wage and real-wage analysis will begin later than unemployment analysis.",
+        "The measure covers employees under collective labour agreements and is not the same as average earnings for every worker.",
+        "The 2026 observations were provisional when checked and may be revised."
+      ]
+    },
+    {
+      "name": "monthly_consumer_prices",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "86141ENG",
+      "table_title": "Consumer prices; CPI 2025=100, index and rates of change",
+      "status": "active",
+      "last_modified_when_checked": "2026-09-08T06:30:00+02:00",
+      "available_period": "2009 December - 2026 August",
+      "frequency": "monthly",
+      "statline_url": "https://www.cbs.nl/en-gb/figures/detail/86141ENG",
+      "odata_base_url": "https://opendata.cbs.nl/ODataApi/OData/86141ENG",
+      "period_status_resource": "Periods",
+      "raw_extraction_scope": {
+        "period_type": "monthly",
+        "coverage": "all available periods for all items"
+      },
+      "mvp_scope": {
+        "start_period": "2020MM01",
+        "period_key_pattern": "YYYYMMmm",
+        "dimensions": {
+          "ExpenditureCategories": {
+            "key": "T001112  ",
+            "label": "000000 All items"
+          }
+        },
+        "measures": {
+          "CPI_1": {
+            "label": "Consumer price index",
+            "unit": "2025=100"
+          },
+          "AnnualRateOfChangeCPI_5": {
+            "label": "Annual rate of change CPI",
+            "unit": "%"
+          }
+        }
+      },
+      "notes": [
+        "Use the national all-items CPI rather than HICP for the MVP purchasing-power comparison.",
+        "The all-items dimension key is fixed-width and contains two trailing spaces.",
+        "Use monthly observations only; the table also contains annual periods.",
+        "CBS rebased the CPI from 2015=100 to 2025=100 in 2026 and provides the rebased history back to December 2009.",
+        "Use the CBS-published annual rate of change as the inflation measure.",
+        "Retain final/provisional status from the Periods resource; August 2026 was provisional when checked.",
+        "Stage from January 2020 to align CPI with the selected wage series for real-wage analysis."
+      ]
+    }
+  ]
+}

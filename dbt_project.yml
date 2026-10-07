@@ -1,0 +1,16 @@
+name: dutch_labour_observatory
+version: 1.0.0
+config-version: 2
+
+profile: dutch_labour_observatory
+
+model-paths: ["models"]
+test-paths: ["data_tests"]
+clean-targets: ["target", "dbt_packages", "logs"]
+
+models:
+  dutch_labour_observatory:
+    marts:
+      +materialized: table
+    dashboard:
+      +materialized: table

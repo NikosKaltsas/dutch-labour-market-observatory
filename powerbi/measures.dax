@@ -1,0 +1,131 @@
+// Create these measures in Power BI after importing the four CSV files.
+// Percentage source fields contain percentage points, so the numeric measures
+// divide by 100 before Power BI percentage formatting is applied.
+
+// headline_kpis measures
+Latest Unemployment Rate =
+    DIVIDE(MAX(headline_kpis[unemployment_rate_pct]), 100)
+
+Latest Unemployed Thousands =
+    MAX(headline_kpis[unemployed_thousands])
+
+Latest Vacancies per 100 Unemployed =
+    MAX(headline_kpis[vacancies_per_100_unemployed])
+
+Latest Unfilled Vacancies Thousands =
+    MAX(headline_kpis[unfilled_vacancies_thousands])
+
+Latest Nominal Wage Growth =
+    DIVIDE(MAX(headline_kpis[hourly_cao_wage_yoy_pct]), 100)
+
+Latest CPI Inflation =
+    DIVIDE(MAX(headline_kpis[cpi_inflation_yoy_pct]), 100)
+
+Latest Real Wage Growth =
+    DIVIDE(MAX(headline_kpis[real_wage_growth_pct]), 100)
+
+Unemployment Period Label =
+    FORMAT(MAX(headline_kpis[unemployment_period]), "MMM yyyy")
+
+Vacancy Period Label =
+    FORMAT(MAX(headline_kpis[vacancy_period]), "MMM yyyy")
+
+Wage-Price Period Label =
+    FORMAT(MAX(headline_kpis[wage_price_period]), "MMM yyyy")
+
+Vacancy Status Label =
+    "Vacancies: "
+        & SELECTEDVALUE(headline_kpis[vacancy_status], "not available")
+        & " · "
+        & [Vacancy Period Label]
+
+Wage-Price Status Label =
+    "Wages: "
+        & SELECTEDVALUE(headline_kpis[wage_status], "not available")
+        & " · CPI: "
+        & SELECTEDVALUE(headline_kpis[cpi_status], "not available")
+        & " · "
+        & [Wage-Price Period Label]
+
+Latest Tightness Direction =
+    SELECTEDVALUE(headline_kpis[tightness_direction_qoq], "not available")
+
+Latest Real Wage Color =
+    IF([Latest Real Wage Growth] >= 0, "#2E7D32", "#B33A3A")
+
+Vacancy Status Color =
+    IF(
+        SELECTEDVALUE(headline_kpis[vacancy_is_provisional], FALSE()),
+        "#F2B134",
+        "#147D78"
+    )
+
+Wage-Price Status Color =
+    IF(
+        SELECTEDVALUE(headline_kpis[wage_price_is_provisional], FALSE()),
+        "#F2B134",
+        "#147D78"
+    )
+
+Report Status Note =
+    "Unemployment "
+        & [Unemployment Period Label]
+        & " | "
+        & [Vacancy Status Label]
+        & " | "
+        & [Wage-Price Status Label]
+
+// monthly_trends measures
+Unemployment Rate =
+    DIVIDE(AVERAGE(monthly_trends[unemployment_rate_pct]), 100)
+
+Unemployed Thousands =
+    AVERAGE(monthly_trends[unemployed_thousands])
+
+Nominal Wage Growth =
+    DIVIDE(AVERAGE(monthly_trends[hourly_cao_wage_yoy_pct]), 100)
+
+CPI Inflation =
+    DIVIDE(AVERAGE(monthly_trends[cpi_inflation_yoy_pct]), 100)
+
+Real Wage Growth =
+    DIVIDE(AVERAGE(monthly_trends[real_wage_growth_pct]), 100)
+
+// quarterly_tightness measures
+Vacancies per 100 Unemployed =
+    AVERAGE(quarterly_tightness[vacancies_per_100_unemployed])
+
+Unfilled Vacancies Thousands =
+    AVERAGE(quarterly_tightness[unfilled_vacancies_thousands])
+
+Quarter-on-Quarter Tightness Change =
+    AVERAGE(quarterly_tightness[tightness_change_qoq])
+
+// Coverage subtitles: use field-value conditional formatting on visual subtitles.
+Real Wage Coverage Note =
+    IF(
+        COALESCE(COUNT('monthly_trends'[real_wage_growth_pct]), 0) = 0,
+        "No data for this selection · Available from Jan 2021",
+        "Coverage: Jan 2021 onward · Months with available data only"
+    )
+
+Wage Inflation Coverage Note =
+VAR WageMonths =
+    COALESCE(COUNT('monthly_trends'[hourly_cao_wage_yoy_pct]), 0)
+VAR CPIMonths =
+    COALESCE(COUNT('monthly_trends'[cpi_inflation_yoy_pct]), 0)
+VAR RealMonths =
+    COALESCE(COUNT('monthly_trends'[real_wage_growth_pct]), 0)
+RETURN
+    SWITCH(
+        TRUE(),
+        WageMonths + CPIMonths + RealMonths = 0,
+            "No data for this selection · CPI from Jan 2020; wages from Jan 2021",
+        WageMonths + RealMonths = 0,
+            "CPI only for this selection · Wage growth available from Jan 2021",
+        "Coverage: CPI from Jan 2020 · Wage growth from Jan 2021"
+    )
+
+// Optional explicit replacement for the donut's implicit nonblank count.
+Months with Real Wage Data =
+    COUNT('monthly_trends'[real_wage_growth_pct])

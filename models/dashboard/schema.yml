@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dashboard_kpis
+    description: One-row table containing the latest dashboard headline values.
+    columns:
+      - name: unemployment_period
+        data_tests: [not_null]
+      - name: unemployment_rate_pct
+        data_tests: [not_null]
+      - name: vacancy_period
+        data_tests: [not_null]
+      - name: vacancies_per_100_unemployed
+        data_tests: [not_null]
+      - name: wage_price_period
+        data_tests: [not_null]
+      - name: real_wage_growth_pct
+        data_tests: [not_null]
+
+  - name: dashboard_monthly_trends
+    description: Monthly chart dataset retaining source-availability flags.
+    columns:
+      - name: period
+        data_tests: [unique, not_null]
+      - name: year_month
+        data_tests: [unique, not_null]
+
+  - name: dashboard_quarterly_tightness
+    description: Quarterly chart dataset for vacancy and tightness trends.
+    columns:
+      - name: quarter_end
+        data_tests: [unique, not_null]
+      - name: quarter_month_start
+        data_tests: [unique, not_null]
+      - name: vacancies_per_100_unemployed
+        data_tests: [not_null]
+      - name: tightness_direction_qoq
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [tighter, looser, unchanged, not_available]

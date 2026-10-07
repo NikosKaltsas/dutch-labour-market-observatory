@@ -1,0 +1,79 @@
+version: 2
+
+models:
+  - name: dim_month
+    description: Continuous monthly calendar spanning the available MVP data.
+    columns:
+      - name: month_start
+        data_tests: [unique, not_null]
+      - name: calendar_year
+        data_tests: [not_null]
+      - name: calendar_quarter
+        data_tests: [not_null]
+
+  - name: fct_labour_market_periodic
+    description: >-
+      Monthly dashboard fact table anchored on unemployment and enriched with
+      wage, CPI, and real-wage measures when available.
+    columns:
+      - name: period
+        data_tests: [unique, not_null]
+      - name: unemployed_thousands
+        data_tests: [not_null]
+      - name: unemployment_rate_pct
+        data_tests: [not_null]
+
+  - name: fct_vacancies
+    description: >-
+      Quarterly vacancy facts aligned to final-month unemployment, including a
+      vacancies-per-100-unemployed tightness indicator.
+    columns:
+      - name: quarter_end
+        data_tests: [unique, not_null]
+      - name: unfilled_vacancies_thousands
+        data_tests: [not_null]
+      - name: unemployed_thousands
+        data_tests: [not_null]
+      - name: vacancies_per_100_unemployed
+        data_tests: [not_null]
+      - name: tightness_direction_qoq
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [tighter, looser, unchanged, not_available]
+
+  - name: fct_wages_prices
+    description: >-
+      Monthly aligned wage and CPI observations with exact and approximate real
+      wage growth measures.
+    columns:
+      - name: period
+        description: First day of the common observation month.
+        data_tests: [unique, not_null]
+      - name: hourly_cao_wage_yoy_pct
+        data_tests: [not_null]
+      - name: cpi_inflation_yoy_pct
+        data_tests: [not_null]
+      - name: real_wage_growth_pct
+        description: Exact inflation-adjusted year-on-year wage growth.
+        data_tests: [not_null]
+      - name: wage_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [final, provisional]
+      - name: cpi_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [final, provisional]
+
+  - name: agg_wages_prices_annual
+    description: Annual descriptive summary of the aligned monthly series.
+    columns:
+      - name: calendar_year
+        data_tests: [unique, not_null]
+      - name: months_observed
+        data_tests: [not_null]
+      - name: avg_real_wage_growth_pct
+        data_tests: [not_null]

@@ -1,0 +1,44 @@
+{
+  "sources": [
+    {
+      "name": "unemployment",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "VERIFY_CURRENT_TABLE_ID",
+      "table_title": "VERIFY_CURRENT_TABLE_TITLE",
+      "statline_url": "https://opendata.cbs.nl/portal.html?_catalog=CBS&_la=en",
+      "frequency": "monthly",
+      "status_checked_on": "YYYY-MM-DD",
+      "notes": "Record seasonal-adjustment and population definitions."
+    },
+    {
+      "name": "vacancies",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "VERIFY_CURRENT_TABLE_ID",
+      "table_title": "VERIFY_CURRENT_TABLE_TITLE",
+      "statline_url": "https://opendata.cbs.nl/portal.html?_catalog=CBS&_la=en",
+      "frequency": "quarterly",
+      "status_checked_on": "YYYY-MM-DD",
+      "notes": "Verify compatibility before calculating a vacancy rate."
+    },
+    {
+      "name": "cao_wages",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "VERIFY_CURRENT_TABLE_ID",
+      "table_title": "Cao wages, contractual wage costs and working hours; index (2020=100)",
+      "statline_url": "https://opendata.cbs.nl/portal.html?_catalog=CBS&_la=en",
+      "frequency": "monthly",
+      "status_checked_on": "YYYY-MM-DD",
+      "notes": "Use current, not discontinued, 2020=100 series."
+    },
+    {
+      "name": "consumer_prices",
+      "institution": "Statistics Netherlands (CBS)",
+      "table_id": "VERIFY_CURRENT_TABLE_ID",
+      "table_title": "Consumer prices; CPI 2025=100, index and changes",
+      "statline_url": "https://opendata.cbs.nl/portal.html?_catalog=CBS&_la=en",
+      "frequency": "monthly",
+      "status_checked_on": "YYYY-MM-DD",
+      "notes": "Use all-items CPI and retain provisional status."
+    }
+  ]
+}

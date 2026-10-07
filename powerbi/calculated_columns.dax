@@ -1,0 +1,26 @@
+// Create each definition separately with New column in the indicated table.
+// These definitions document the report build; this file is not auto-imported.
+
+// Table: dim_month
+Year =
+    YEAR('dim_month'[month_start])
+
+// Table: monthly_trends. Missing data must not become a growth category.
+Real Wage Direction =
+VAR Growth = 'monthly_trends'[real_wage_growth_pct]
+RETURN
+    IF(
+        ISBLANK(Growth),
+        BLANK(),
+        IF(Growth >= 0, "Non-negative", "Negative")
+    )
+
+// Table: quarterly_tightness. Sort this column by quarter_end.
+Quarter Label =
+VAR QuarterDate = 'quarterly_tightness'[quarter_end]
+RETURN
+    IF(
+        ISBLANK(QuarterDate),
+        BLANK(),
+        YEAR(QuarterDate) & " Q" & QUARTER(QuarterDate)
+    )
