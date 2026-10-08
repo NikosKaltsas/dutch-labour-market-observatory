@@ -19,8 +19,47 @@ and real wage growth, built from official Statistics Netherlands (CBS) data.
 The PBIX contains an imported data snapshot, not a live feed. Latest observations
 in this snapshot range from June to August 2026, depending on the source. Opening
 the saved report does not require regenerating the CSVs; refreshing it requires
-rebuilding the exports and pointing Power Query at your local copies. Clean report
-screenshots are still pending.
+rebuilding the exports and pointing Power Query at your local copies.
+
+## Report preview
+
+### Labour-market overview
+
+![Labour-market overview with all years selected](docs/images/overview.png)
+
+All years are selected. The quarterly chart has a horizontal scrollbar; this
+capture shows the earlier quarters, not the full quarterly series at once.
+Headline cards show the latest available observations, independently of filters.
+
+### Definitions & data quality
+
+![Metric definitions, source coverage, report guidance and limitations](docs/images/definitions.png)
+
+## Findings from the loaded snapshot
+
+- **Unemployment is below its early-2015 level:** the seasonally adjusted rate
+  fell from 8.3% in January 2015 to 4.0% in July 2026. This is a historical
+  comparison, not a claim that the decline was continuous.
+- **Vacancy tightness has eased from its peak:** the quarterly ratio reached
+  138.47 vacancies per 100 unemployed in Q1 2022, compared with 95.37 in Q2 2026.
+  The latest quarter is provisional. This is a project tightness indicator, not
+  the official vacancy rate.
+- **Latest real wage growth is positive, but the history includes a squeeze:**
+  August 2026 nominal wage growth of 4.0% and CPI inflation of 3.3% imply exact
+  real wage growth of approximately 0.7%. Across January 2021–August 2026,
+  47 of 68 available months had non-negative real wage growth and 21 had negative
+  growth (approximately 69% and 31%). These shares count months, not cumulative
+  purchasing-power gains. The latest wage and CPI observations are provisional.
+
+These descriptive findings were checked against the local dashboard exports on
+8 October 2026; they do not represent a new source refresh. National averages do
+not describe every household or sector, CAO wages are not total earnings, and the
+latest cards have different reference periods. Definitions and provenance are in
+[the metric contract](docs/metric_definitions.md) and
+[source catalogue](config/sources.json).
+
+**Next analytical question:** does the national improvement in real wage growth
+also appear across sectors, once comparable sector-level data is available?
 
 ## Decision question
 
@@ -407,7 +446,8 @@ and reviewed without inventing formatting or metric logic in the desktop file.
 - [x] Add tested dashboard models, CSV exports, and a dashboard specification.
 - [x] Package the Power BI theme, measures, and visual validation checklist.
 - [x] Build the two-page Power BI report.
-- [ ] Complete final visual acceptance checks and add clean screenshots.
+- [x] Add screenshots of both report pages and a snapshot findings summary.
+- [ ] Complete remaining visual acceptance checks in the release checklist.
 - [ ] Write a separate two-page briefing.
 
 The actionable task list is in [BACKLOG.md](BACKLOG.md), and source-selection

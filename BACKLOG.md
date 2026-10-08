@@ -58,14 +58,15 @@ forecasting.
 - [x] Package the Power BI theme, DAX measures, build sequence, and visual
       validation targets.
 - [x] Build the Power BI overview and definitions/data-quality pages.
-- [ ] Write three findings, three limitations, and one recommended next question.
+- [x] Write three findings, three limitations, and one recommended next question.
 
 ## Milestone 4: release
 
 - [x] Save donut interaction exclusions for both quarterly visuals.
 - [ ] Complete final visual acceptance checks in `docs/release_checklist.md`.
-- [ ] Review and confirm the public GitHub destination before publishing.
-- [ ] Add dashboard screenshots and a two-minute walkthrough.
+- [x] Review and confirm the public GitHub destination before publishing.
+- [x] Add screenshots of both report pages to the README.
+- [ ] Record a two-minute walkthrough.
 - [ ] Write the two-page labour-market briefing.
 - [ ] Run the full rebuild and test suite from a clean environment.
 - [ ] Tag v0.1 and add the project to the main GitHub profile README.

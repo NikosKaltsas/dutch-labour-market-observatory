@@ -23,15 +23,17 @@ not automatically synchronized with the binary model.
   author updated and saved the report. The overview is now the active page.
 - [ ] Final visual regression check in Desktop: with 2022–2023 selected, gauge
   122.8 and all eight quarter bars remain unchanged after selecting Negative.
-- [ ] Reset to All and clear chart selections before capturing release screenshots.
-  The saved report currently opens on the overview with 2022 and 2023 selected.
-- [ ] Check both full pages for clipping at Fit to page. The saved bottom
-  limitations box extends slightly beyond the 1920 × 1080 page bounds; move or
-  resize it inside the page before taking screenshots.
-- [ ] Capture clean, current images of both pages without editing panes, tooltips,
-  selection handles, or the system tray. Save as `docs/images/overview.png` and
-  `docs/images/definitions.png`, then embed them in the README. Do not use stale
-  screenshots or mockups as evidence of the finished report.
+- [x] Capture the overview with All years selected and no visible chart selection.
+  The saved PBIX has no Year selection filter and opens on the overview.
+- [x] Review the author-supplied screenshots: both pages are readable, including
+  the limitations text, without editing panes or tooltips. This is screenshot
+  review, not an automated rendering test of every viewport.
+- [x] Save the supplied images unchanged as `docs/images/overview.png` and
+  `docs/images/definitions.png`, and embed them in the README. The quarterly chart
+  scrollbar is explained in the caption.
+- [ ] Optional wording polish: rename the donut center label to **Months in
+  current selection**. The supplied screenshot still says **Months with available
+  data**, which describes its All-years state but is less clear after a slice click.
 - [ ] Review embedded model data and local source paths in Power BI before public
   release. The report intentionally includes CBS-derived imported data; this
   preparation does not certify the compressed model as free of private metadata.
@@ -48,8 +50,8 @@ not automatically synchronized with the binary model.
   warehouse, dbt outputs, or local dbt user identity. Relative Markdown links
   resolve; Git whitespace check passes. A heuristic text credential scan found
   no matches, but is not a guarantee about the compressed PBIX model.
-- [ ] Confirm GitHub owner, repository URL, and visibility before creating a
-  remote or uploading. Nothing is automatically published by local preparation.
+- [x] Owner and public visibility confirmed by the author. Published at
+  https://github.com/NikosKaltsas/dutch-labour-market-observatory on 2026-10-08.
 - [ ] Run a full clean-environment rebuild before claiming reproducibility has
   been validated end to end.
 
